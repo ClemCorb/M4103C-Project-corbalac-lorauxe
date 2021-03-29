@@ -42,17 +42,30 @@ function search() {
     }
   }
 
+
   var responseField = document.getElementById("bloc-resultats");
 
   if (searchResponse.length == 0) {
-    console.log("BITE");
     // crée un nouvel élément div
     var p = document.createElement("p");
     // et lui donne un peu de contenu
-    p.setAttribute('value', '( &empty; Aucun résultat trouvé )');
+    p.textContent = "( &empty; Aucun résultat trouvé )";
     p.setAttribute('class', 'info-vide');
     // ajoute le nœud texte au nouveau div créé
     console.log(p);
+    responseField.append(p);
+  }
+  else {
+    for (var i = 0; i < searchResponse.length; i++) {
+      console.log(searchResponse[i]);
+      var p = document.createElement("p");
+      // et lui donne un peu de contenu
+      p.textContent = searchResponse[i];
+      p.setAttribute('class', 'res');
+      // ajoute le nœud texte au nouveau div créé
+      console.log(p);
+      responseField.append(p);
+    }
   }
 
 }
