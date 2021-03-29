@@ -1,4 +1,4 @@
-jokes = []
+var jokes = []
 
 // ========== AJAX ========== //
 
@@ -30,4 +30,28 @@ function init() {
   for (var i = 1; i < 566; i++) {
     ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
   }
+}
+
+function search() {
+  var value = document.getElementById("bar-recherche").value;
+  var searchResponse = [];
+  for (var i = 0; i < jokes.length; i++) {
+    if (jokes[i].search(value) != -1) {
+      searchResponse.push(jokes[i]);
+    }
+  }
+
+  var responseField = document.getElementById("bloc-resultats");
+
+  if (searchResponse.length == 0) {
+    console.log("BITE");
+    // crée un nouvel élément div
+    var p = document.createElement("p");
+    // et lui donne un peu de contenu
+    p.setAttribute('value', '( &empty; Aucun résultat trouvé )');
+    p.setAttribute('class', 'info-vide');
+    // ajoute le nœud texte au nouveau div créé
+    console.log(p);
+  }
+
 }
