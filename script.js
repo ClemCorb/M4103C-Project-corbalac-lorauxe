@@ -31,3 +31,10 @@ function init() {
     ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
   }
 }
+function favoris(){
+  var fav=document.getElementById("recherche").value;
+  let newLi = document.createElement('li');
+  newLi.textContent='<span title="Cliquer pour relancer la recherche">'+fav+'</span>  <img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">';
+  var doc= document.body.getElementById('section-favoris');
+  doc.append(newLi);
+}
