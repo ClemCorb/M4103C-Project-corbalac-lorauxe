@@ -1,4 +1,4 @@
-jokes = []
+var jokes = []
 
 // ========== AJAX ========== //
 
@@ -31,8 +31,34 @@ function init() {
     ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
   }
 }
+
+
+function search() {
+  var value = document.getElementById("bar-recherche").value;
+  var searchResponse = [];
+  for (var i = 0; i < jokes.length; i++) {
+    if (jokes[i].search(value) != -1) {
+      searchResponse.push(jokes[i]);
+    }
+  }
+
+  var responseField = document.getElementById("bloc-resultats");
+
+  if (searchResponse.length == 0) {
+    console.log("BITE");
+    // crée un nouvel élément div
+    var p = document.createElement("p");
+    // et lui donne un peu de contenu
+    p.setAttribute('value', '( &empty; Aucun résultat trouvé )');
+    p.setAttribute('class', 'info-vide');
+    // ajoute le nœud texte au nouveau div créé
+    console.log(p);
+  }
+
+}
+
 function favoris(){
-  var fav=document.getElementById("recherche").value;
+  var fav=document.getElementById("bar-recherche").value;
   let newLi = document.createElement('li');
   newLi.textContent='<span title="Cliquer pour relancer la recherche">'+fav+'</span>  <img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">';
   var doc= document.body.getElementById('section-favoris');
