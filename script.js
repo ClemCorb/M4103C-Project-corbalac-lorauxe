@@ -60,7 +60,17 @@ function search() {
 function favoris(){
   var fav=document.getElementById("bar-recherche").value;
   let newLi = document.createElement('li');
-  newLi.textContent='<span title="Cliquer pour relancer la recherche">'+fav+'</span>  <img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">';
-  var doc= document.body.getElementById('section-favoris');
+  let newSpan = document.createElement('span');
+  let newImg = document.createElement('img');
+  var doc= document.getElementById('liste-favoris');
+  newSpan.title="Cliquer pour relancer la recherche"
+  newSpan.textContent=fav;
+  newImg.src="images/croix.svg";
+  newImg.alt="Icone pour supprimer le favori"
+  newImg.width=15;
+  newImg.title="Cliquer pour supprimer le favori";
+  newLi.append(newSpan);
+  newLi.append(newImg);
+
   doc.append(newLi);
 }
