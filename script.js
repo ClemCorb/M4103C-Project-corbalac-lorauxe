@@ -90,7 +90,7 @@ function favoris(){
       console.log(compar);
       console.log(fav);
       console.log("==================");
-      if (compar === fav) {
+      if (compar == fav) {
         cree=false;
       }
       i++;
@@ -108,10 +108,10 @@ function favoris(){
       newImg.alt="Icone pour supprimer le favori"
       newImg.width=15;
       newImg.title="Cliquer pour supprimer le favori";
+      doc.append(newLi);
       newLi.append(newSpan);
       newLi.append(" ");
       newLi.append(newImg);
-      doc.append(newLi);
       var etoile=document.getElementById("eto-favoris");
       etoile.src="images/etoile-pleine.svg";
       etoile.alt="Etoile pleine";
