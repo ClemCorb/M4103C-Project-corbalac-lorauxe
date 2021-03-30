@@ -41,6 +41,7 @@ function search() {
       searchResponse.push(jokes[i]);
     }
   }
+  addAutoCompetion(value);
 
 
   var responseField = document.getElementById("bloc-resultats");
@@ -90,4 +91,18 @@ function favoris(){
   etoile.src="images/etoile-pleine.svg";
   etoile.alt="Etoile pleine";
   etoile.width="22";
+}
+
+
+// === autocompletion === //
+
+function addAutoCompetion(recherche){
+  var datalist = document.getElementById("search-list");
+
+  var p = document.createElement("option");
+  // et lui donne un peu de contenu
+  p.textContent = recherche;
+  // ajoute le nœud texte au nouveau div créé
+  datalist.append(p);
+
 }
