@@ -4,9 +4,9 @@
 /* Définition des principales couleurs */
 :root {
 	--text-color : #fafafa; /* Texte presque blanc */
-	--background: #34495e; /* Fond bleu foncé */
-	--main-green: rgb(26, 188, 156);
-	--active-green: rgb(20, 156, 128);
+	--background: #151718; /* Fond bleu foncé */
+	--main-green: #9e161e;
+	--active-green: #e64d3c;
 }
 
 * {
