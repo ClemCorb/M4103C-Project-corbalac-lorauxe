@@ -44,26 +44,25 @@ function search() {
 
 
   var responseField = document.getElementById("bloc-resultats");
+  responseField.innerHTML = "";
 
   if (searchResponse.length == 0) {
     // crée un nouvel élément div
     var p = document.createElement("p");
     // et lui donne un peu de contenu
-    p.textContent = "( &empty; Aucun résultat trouvé )";
+    p.innerHTML = "( &empty; Aucun résultat trouvé )";
     p.setAttribute('class', 'info-vide');
     // ajoute le nœud texte au nouveau div créé
-    console.log(p);
     responseField.append(p);
   }
+
   else {
     for (var i = 0; i < searchResponse.length; i++) {
-      console.log(searchResponse[i]);
       var p = document.createElement("p");
       // et lui donne un peu de contenu
       p.textContent = searchResponse[i];
       p.setAttribute('class', 'res');
       // ajoute le nœud texte au nouveau div créé
-      console.log(p);
       responseField.append(p);
     }
   }
