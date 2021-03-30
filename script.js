@@ -70,6 +70,7 @@ function search() {
 
 }
 
+  // === Favoris === //
 function favoris(){
   var fav=document.getElementById("bar-recherche").value;
   var favoris = document.getElementById("liste-favoris");
@@ -77,13 +78,24 @@ function favoris(){
   if (fav !=0 && favoris.firstChild !=0 ){
     var i=0;
     do{
-      console.log(favoris.childNodes[i]);
-      if (favoris.childNodes[i].firstElementChild.innerText==fav) {
+      var compar = favoris.childNodes[i];
+      compar = compar.innerText;
+      fav=fav.trim();
+      if(compar===undefined){
+      }
+      else{
+        compar.trim();
+      }
+      console.log("==================");
+      console.log(compar);
+      console.log(fav);
+      console.log("==================");
+      if (compar === fav) {
         cree=false;
       }
       i++;
     }
-    while (favoris.childNodes[i]!=favoris.lastChild);
+    while (favoris.childNodes[i]!=favoris.lastChild && cree);
     if(cree){
       let newLi = document.createElement('li');
       let newSpan = document.createElement('span');
