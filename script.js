@@ -61,7 +61,7 @@ function search() {
     for (var i = 0; i < searchResponse.length; i++) {
       var p = document.createElement("p");
       // et lui donne un peu de contenu
-      p.textContent = searchResponse[i];
+      p.innerHTML = searchResponse[i];
       p.setAttribute('class', 'res');
       // ajoute le nœud texte au nouveau div créé
       responseField.append(p);
@@ -99,10 +99,20 @@ function favoris(){
 function addAutoCompetion(recherche){
   var datalist = document.getElementById("search-list");
 
-  var p = document.createElement("option");
-  // et lui donne un peu de contenu
-  p.textContent = recherche;
-  // ajoute le nœud texte au nouveau div créé
-  datalist.append(p);
+  var double = false;
+
+  for (var i = 0; i < datalist.children.length; i++) {
+    if(datalist.children[i].value == recherche) {
+      double = true;
+    }
+  }
+
+  if (!double) {
+    var p = document.createElement("option");
+    // et lui donne un peu de contenu
+    p.textContent = recherche;
+    // ajoute le nœud texte au nouveau div créé
+    datalist.append(p);
+  }
 
 }
