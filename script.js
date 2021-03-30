@@ -41,29 +41,29 @@ function search() {
       searchResponse.push(jokes[i]);
     }
   }
+  addAutoCompetion(value);
 
 
   var responseField = document.getElementById("bloc-resultats");
+  responseField.innerHTML = "";
 
   if (searchResponse.length == 0) {
     // crée un nouvel élément div
     var p = document.createElement("p");
     // et lui donne un peu de contenu
-    p.textContent = "( &empty; Aucun résultat trouvé )";
+    p.innerHTML = "( &empty; Aucun résultat trouvé )";
     p.setAttribute('class', 'info-vide');
     // ajoute le nœud texte au nouveau div créé
-    console.log(p);
     responseField.append(p);
   }
+
   else {
     for (var i = 0; i < searchResponse.length; i++) {
-      console.log(searchResponse[i]);
       var p = document.createElement("p");
       // et lui donne un peu de contenu
       p.textContent = searchResponse[i];
       p.setAttribute('class', 'res');
       // ajoute le nœud texte au nouveau div créé
-      console.log(p);
       responseField.append(p);
     }
   }
@@ -106,4 +106,18 @@ function favoris(){
       etoile.width="22";
       }
   }
+}
+
+
+// === autocompletion === //
+
+function addAutoCompetion(recherche){
+  var datalist = document.getElementById("search-list");
+
+  var p = document.createElement("option");
+  // et lui donne un peu de contenu
+  p.textContent = recherche;
+  // ajoute le nœud texte au nouveau div créé
+  datalist.append(p);
+
 }

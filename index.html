@@ -3,7 +3,7 @@
 	<head>
 		<title>Chuck Norris Fact</title>
 		<meta charset="utf-8">
-		<link rel="shortcut icon" type="image/x-icon" href="favicon-js.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="images/favicon-32x32.png">
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body onload="init()">
@@ -20,7 +20,9 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input id="bar-recherche" type="text" placeholder="Que cherchez-vous ?" />
+					<input id="bar-recherche" type="text" placeholder="Que cherchez-vous ?" list="search-list"/>
+					<datalist id="search-list">
+					</datalist>
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
