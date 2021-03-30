@@ -76,6 +76,7 @@ function favoris(){
   let newSpan = document.createElement('span');
   let newImg = document.createElement('img');
   var doc= document.getElementById('liste-favoris');
+  let newEto = document.createElement('img');
   newSpan.title="Cliquer pour relancer la recherche"
   newSpan.textContent=fav;
   newImg.src="images/croix.svg";
@@ -83,7 +84,11 @@ function favoris(){
   newImg.width=15;
   newImg.title="Cliquer pour supprimer le favori";
   newLi.append(newSpan);
+  newLi.append(" ");
   newLi.append(newImg);
-
   doc.append(newLi);
+  var etoile=document.getElementById("eto-favoris");
+  etoile.src="images/etoile-pleine.svg";
+  etoile.alt="Etoile pleine";
+  etoile.width="22";
 }
