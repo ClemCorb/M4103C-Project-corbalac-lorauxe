@@ -72,23 +72,38 @@ function search() {
 
 function favoris(){
   var fav=document.getElementById("bar-recherche").value;
-  let newLi = document.createElement('li');
-  let newSpan = document.createElement('span');
-  let newImg = document.createElement('img');
-  var doc= document.getElementById('liste-favoris');
-  let newEto = document.createElement('img');
-  newSpan.title="Cliquer pour relancer la recherche"
-  newSpan.textContent=fav;
-  newImg.src="images/croix.svg";
-  newImg.alt="Icone pour supprimer le favori"
-  newImg.width=15;
-  newImg.title="Cliquer pour supprimer le favori";
-  newLi.append(newSpan);
-  newLi.append(" ");
-  newLi.append(newImg);
-  doc.append(newLi);
-  var etoile=document.getElementById("eto-favoris");
-  etoile.src="images/etoile-pleine.svg";
-  etoile.alt="Etoile pleine";
-  etoile.width="22";
+  var favoris = document.getElementById("liste-favoris");
+  var cree=true;
+  if (fav !=0 && favoris.firstChild !=0 ){
+    var i=0;
+    do{
+      console.log(favoris.childNodes[i]);
+      if (favoris.childNodes[i].firstElementChild.innerText==fav) {
+        cree=false;
+      }
+      i++;
+    }
+    while (favoris.childNodes[i]!=favoris.lastChild);
+    if(cree){
+      let newLi = document.createElement('li');
+      let newSpan = document.createElement('span');
+      let newImg = document.createElement('img');
+      var doc= document.getElementById('liste-favoris');
+      let newEto = document.createElement('img');
+      newSpan.title="Cliquer pour relancer la recherche"
+      newSpan.textContent=fav;
+      newImg.src="images/croix.svg";
+      newImg.alt="Icone pour supprimer le favori"
+      newImg.width=15;
+      newImg.title="Cliquer pour supprimer le favori";
+      newLi.append(newSpan);
+      newLi.append(" ");
+      newLi.append(newImg);
+      doc.append(newLi);
+      var etoile=document.getElementById("eto-favoris");
+      etoile.src="images/etoile-pleine.svg";
+      etoile.alt="Etoile pleine";
+      etoile.width="22";
+      }
+  }
 }
