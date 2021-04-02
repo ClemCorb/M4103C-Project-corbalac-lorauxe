@@ -104,10 +104,12 @@ function favoris(){
       let newEto = document.createElement('img');
       newSpan.title="Cliquer pour relancer la recherche"
       newSpan.textContent=fav;
+      newSpan.onClick=useFavoris;
       newImg.src="images/croix.svg";
       newImg.alt="Icone pour supprimer le favori"
       newImg.width=15;
       newImg.title="Cliquer pour supprimer le favori";
+      newImg.onclick=suprFav;
       doc.append(newLi);
       newLi.append(newSpan);
       newLi.append(" ");
@@ -118,6 +120,19 @@ function favoris(){
       etoile.width="22";
       }
   }
+}
+
+
+// === utiliser les favoris === //
+function useFavoris(){
+  var contenu=this.textContent;
+  var barRecherche=document.getElementById("bar-recherche");
+  barRecherche.textContent=contenu;
+}
+// === Suprimer un favoris === //
+function suprFav(){
+  var elem=this.parent;
+  elem.remove();
 }
 
 
