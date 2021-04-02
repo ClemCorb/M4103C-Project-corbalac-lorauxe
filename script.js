@@ -30,6 +30,7 @@ function init() {
   for (var i = 1; i < 566; i++) {
     ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
   }
+  //Normalement initialisation des Favoris depuis le localStorage
 }
 
 
@@ -104,7 +105,7 @@ function favoris(){
       let newEto = document.createElement('img');
       newSpan.title="Cliquer pour relancer la recherche"
       newSpan.textContent=fav;
-      newSpan.onClick=useFavoris;
+      newSpan.onclick=useFavoris;
       newImg.src="images/croix.svg";
       newImg.alt="Icone pour supprimer le favori"
       newImg.width=15;
@@ -118,6 +119,8 @@ function favoris(){
       etoile.src="images/etoile-pleine.svg";
       etoile.alt="Etoile pleine";
       etoile.width="22";
+      // Ici se trouve normalement le stockage dans localStorage
+      //avec un ID allant de 0 à n, n étant le nombre de favoris
       }
   }
 }
@@ -125,13 +128,15 @@ function favoris(){
 
 // === utiliser les favoris === //
 function useFavoris(){
+  console.log(this.textContent);
   var contenu=this.textContent;
   var barRecherche=document.getElementById("bar-recherche");
-  barRecherche.textContent=contenu;
+  barRecherche.value=contenu;
 }
 // === Suprimer un favoris === //
 function suprFav(){
-  var elem=this.parent;
+  var elem=this.parentElement;
+  //localStorage.removeItem(elem.id);// supression de l'élément dans le localStorage
   elem.remove();
 }
 
