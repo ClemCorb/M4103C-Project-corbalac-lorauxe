@@ -53,27 +53,31 @@ p#explication {
 	flex: 1 1 auto;
 }
 
-#bloc-recherche {
+#bloc-recherche, #bloc-nom {
 	display: flex;
 	margin: 0 auto ;
 	min-width: 450px;
 	flex-direction: row;
 }
 
+#bloc-recherche {
+	margin-bottom: 20px;
+}
+
 #bloc-recherche>input[type=text],
-#bloc-recherche>button {
+#bloc-recherche>button, #bloc-nom>input[type=text], #bloc-nom>button{
 	display: block;
 	font-size: 1.2em ;
 }
 
-#bloc-recherche>input[type=text] {
+#bloc-recherche>input[type=text], #bloc-nom>input[type=text] {
 	color: #2d2d2d; /* Presque noir */
 	flex: 1;
 	padding: 0.7em;
 	border: 0.3em solid var(--main-green);
 }
 
-#bloc-recherche>button {
+#bloc-recherche>button, #bloc-nom>button {
 	padding: 0.8em 0.8em;
 	/* Bordure invisible pour que le hover ne bouge pas le bouton */
 	border: 1px solid var(--main-green);
@@ -84,22 +88,22 @@ p#explication {
 }
 
 /* Apparences des boutons clicables */
-#bloc-recherche>button.btn_clicable {
+#bloc-recherche>button.btn_clicable, #bloc-nom>button.btn_clicable {
 	background-color: var(--main-green);
 }
 
-#bloc-recherche>button:focus {
+#bloc-recherche>button:focus, #bloc-nom>button:focus {
 	/* Pour éviter un affichage disgracieux
 		quand le bouton reste en focus */
 	outline: 0 !important;
 }
 
-#bloc-recherche>button.btn_clicable:hover {
+#bloc-recherche>button.btn_clicable:hover, #bloc-nom>button.btn_clicable:hover {
 	cursor: pointer;
 	border: 1px solid white;
 }
 
-#bloc-recherche>button.btn_clicable:active {
+#bloc-recherche>button.btn_clicable:active, #bloc-nom>button.btn_clicable:active {
 	background-color: var(--active-green);
 }
 

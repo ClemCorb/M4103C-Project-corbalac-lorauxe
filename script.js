@@ -33,6 +33,21 @@ function init() {
   //Normalement initialisation des Favoris depuis le localStorage
 }
 
+function changeName() {
+  var fullname = document.getElementById("bar-nom").value;
+  var splitName = fullname.split(" ");
+
+  if (fullname == "") {
+    for (var i = 1; i < 566; i++) {
+      ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
+    }
+  }
+  else {
+    for (var i = 1; i < 566; i++) {
+      ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i + "?firstName=" + splitName[0] + "&lastName=" + splitName[1], true);
+    }
+  }
+}
 
 function search() {
   var value = document.getElementById("bar-recherche").value;
