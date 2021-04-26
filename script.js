@@ -19,6 +19,7 @@ function ajaxGetRequest(callback, url, async) {
 
 function jokesPush(n) {
   joke = JSON.parse(n)
+
   if (joke.type == "success") {
     jokes.push(joke.value.joke);
   }
@@ -36,6 +37,8 @@ function init() {
 function changeName() {
   var fullname = document.getElementById("bar-nom").value;
   var splitName = fullname.split(" ");
+
+  jokes = [];
 
   if (fullname == "") {
     for (var i = 1; i < 566; i++) {
