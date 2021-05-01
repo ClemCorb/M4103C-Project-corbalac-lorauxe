@@ -45,11 +45,16 @@ function changeName() {
       ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
     }
   }
-  else {
+  else if (splitName[0] != undefined && splitName[1] != undefined){
     for (var i = 1; i < 566; i++) {
       ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i + "?firstName=" + splitName[0] + "&lastName=" + splitName[1], true);
     }
   }
+  else {
+    for (var i = 1; i < 566; i++) {
+      ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i + "?firstName=" + splitName[0] + "&lastName=", true);
+    }  }
+
 }
 
 function search() {
