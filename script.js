@@ -1,8 +1,20 @@
 var jokes = []
+var count = 0
 
 // ========== AJAX ========== //
 
 function ajaxGetRequest(callback, url, async) {
+  var responseField = document.getElementById("bloc-resultats");
+  responseField.innerHTML = "";
+
+  // crée un nouvel élément div
+  var p = document.createElement("p");
+  // et lui donne un peu de contenu
+  p.innerHTML = '<img src="images/attente-ajax.gif" alt="Veuillez patienter" width=30>';
+  // ajoute le nœud texte au nouveau div créé
+  responseField.append(p);
+
+
   var xhr = new XMLHttpRequest(); // Création de l'objet
   // Définition de la fonction à exécuter à chaque changement d'état
   xhr.onreadystatechange = function() {
@@ -15,23 +27,23 @@ function ajaxGetRequest(callback, url, async) {
   };
   xhr.open("GET", url, async); // Initialisation de l'objet
   xhr.send(); // Envoi de la requête
+
 }
 
 function jokesPush(n) {
   joke = JSON.parse(n)
 
-  if (joke.type == "success") {
-    jokes.push(joke.value.joke);
+  for (var i = 0; i < 565; i++) {
+    jokes[i] = joke.value[i].joke;
   }
+  var responseField = document.getElementById("bloc-resultats");
+  responseField.innerHTML = "";
 }
 
 // ========== function ========== //
 
 function init() {
-  for (var i = 1; i < 566; i++) {
-    ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
-  }
-  //Normalement initialisation des Favoris depuis le localStorage
+  ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
 }
 
 function changeName() {
@@ -41,20 +53,14 @@ function changeName() {
   jokes = [];
 
   if (fullname == "") {
-    for (var i = 1; i < 566; i++) {
-      ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i, true);
-    }
+    ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
   }
   else if (splitName[0] != undefined && splitName[1] != undefined){
-    for (var i = 1; i < 566; i++) {
-      ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i + "?firstName=" + splitName[0] + "&lastName=" + splitName[1], true);
-    }
+    ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + "?firstName=" + splitName[0] + "&lastName=" + splitName[1], true);
   }
   else {
-    for (var i = 1; i < 566; i++) {
-      ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + i + "?firstName=" + splitName[0] + "&lastName=", true);
-    }  }
-
+    ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + "?firstName=" + splitName[0] + "&lastName=", true);
+  }
 }
 
 function search() {
@@ -65,8 +71,8 @@ function search() {
       searchResponse.push(jokes[i]);
     }
   }
-  addAutoCompetion(value);
 
+  addAutoCompetion(value);
 
   var responseField = document.getElementById("bloc-resultats");
   responseField.innerHTML = "";
