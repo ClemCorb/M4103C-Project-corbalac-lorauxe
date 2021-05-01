@@ -29,6 +29,6 @@ Ce dépôt organisé comme suit :
 1 directory, 10 files
 ```
 
-## Librairy
+## API
 
-La librairy que nous avons choisit d'utiliser est l'[ICNDB](http://www.icndb.com/) (Iternet Chuck Norris Data Base)
+L'api que nous avons choisit d'utiliser est l'[ICNDB](http://www.icndb.com/) (Iternet Chuck Norris Data Base)
