@@ -36,6 +36,17 @@ h1 {
 	color: var(--main-green);
 }
 
+h2 {
+	margin: 0.5em
+	text-align: center;
+	font-variant: small-caps;
+	color: var(--main-green);
+}
+
+h2:first-child{
+	margin-top: 0em;
+}
+
 p#explication {
 	font-size: 1.2em;
 }
