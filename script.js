@@ -1,5 +1,6 @@
-var jokes = []
-var count = 0
+var jokes = [];
+var list_favoris = [];
+var count = 0;
 
 // ========== AJAX ========== //
 
@@ -31,6 +32,7 @@ function ajaxGetRequest(callback, url, async) {
 }
 
 function jokesPush(n) {
+  //{n est un JSON} => {Parse les "joke" pour les mettre dans le tableau jokes}
   joke = JSON.parse(n)
 
   for (var i = 0; i < 565; i++) {
@@ -44,8 +46,18 @@ function jokesPush(n) {
 
 function init() {
   ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
+
+  favoris = localStorage.getItem('favoris');
+
+  for (var i = 0; i < list_favoris.length; i++) {
+    createFav(list_favoris[i]);
+
+    list_favoris = list_favoris.push(newFav);
+  }
+
 }
 
+// ===== changement de nom via ma deuxième bar ===== //
 function changeName() {
   var fullname = document.getElementById("bar-nom").value;
   var splitName = fullname.split(" ");
@@ -63,6 +75,7 @@ function changeName() {
   }
 }
 
+// ==== rechercher ===== //
 function search() {
   var value = document.getElementById("bar-recherche").value;
   var searchResponse = [];
@@ -100,75 +113,97 @@ function search() {
 
 }
 
-  // === Favoris === //
-function favoris(){
-  var fav=document.getElementById("bar-recherche").value;
-  var favoris = document.getElementById("liste-favoris");
-  var cree=true;
-  if (fav !=0 && favoris.firstChild !=0 ){
-    var i=0;
-    do{
-      var compar = favoris.childNodes[i];
-      compar = compar.innerText;
-      fav=fav.trim();
-      if(compar===undefined){
-      }
-      else{
-        compar.trim();
-      }
-      console.log("==================");
-      console.log(compar);
-      console.log(fav);
-      console.log("==================");
-      if (compar == fav) {
-        cree=false;
-      }
-      i++;
-    }
-    while (favoris.childNodes[i]!=favoris.lastChild && cree);
-    if(cree){
-      let newLi = document.createElement('li');
-      let newSpan = document.createElement('span');
-      let newImg = document.createElement('img');
-      var doc= document.getElementById('liste-favoris');
-      let newEto = document.createElement('img');
-      newSpan.title="Cliquer pour relancer la recherche"
-      newSpan.textContent=fav;
-      newSpan.onclick=useFavoris;
-      newImg.src="images/croix.svg";
-      newImg.alt="Icone pour supprimer le favori"
-      newImg.width=15;
-      newImg.title="Cliquer pour supprimer le favori";
-      newImg.onclick=suprFav;
-      doc.append(newLi);
-      newLi.append(newSpan);
-      newLi.append(" ");
-      newLi.append(newImg);
-      var etoile=document.getElementById("eto-favoris");
-      etoile.src="images/etoile-pleine.svg";
-      etoile.alt="Etoile pleine";
-      etoile.width="22";
-      // Ici se trouve normalement le stockage dans localStorage
-      //avec un ID allant de 0 à n, n étant le nombre de favoris
-      }
+// === Favoris === //
+// === add favoris === //
+function addFavoris() {
+  var search = document.getElementById("bar-recherche").value;
+
+  if (search != '') {
+    createFav(search);
+
+    list_favoris.push(search);
+    //localStorage.setItem('favoris', list_favoris);
+
+    var btn_favoris = document.getElementById('btn-favoris');
+    btn_favoris.setAttribute('onclick', 'removeFavoris()')
+
+    var etoile = document.getElementById('eto-favoris');
+    etoile.setAttribute('src', 'images/etoile-pleine.svg')
   }
 }
 
+// === removeFavoris === //
+function removeFavoris(elem) {
 
-// === utiliser les favoris === //
-function useFavoris(){
-  console.log(this.textContent);
-  var contenu=this.textContent;
-  var barRecherche=document.getElementById("bar-recherche");
-  barRecherche.value=contenu;
-}
-// === Suprimer un favoris === //
-function suprFav(){
-  var elem=this.parentElement;
+  if (elem == undefined) {
+    var elem = document.getElementById("bar-recherche").value;
+    elem = document.getElementById(elem);
+  }
+
+  var index = list_favoris.indexOf(elem);
+
+  list_favoris.splice(index, 1);
+
+  //localStorage.setItem('favoris', list_favoris);
+
+  var btn_favoris = document.getElementById('btn-favoris');
+  btn_favoris.setAttribute('onclick', 'addFavoris()')
+
+  var etoile = document.getElementById('eto-favoris');
+  etoile.setAttribute('src', 'images/etoile-vide.svg')
+
+  var elem = elem.parentElement;
+
   //localStorage.removeItem(elem.id);// supression de l'élément dans le localStorage
   elem.remove();
 }
 
+function cheakFav() {
+  var search = document.getElementById("bar-recherche").value;
+  if (list_favoris.includes(search)) {
+    var btn_favoris = document.getElementById('btn-favoris');
+    btn_favoris.setAttribute('onclick', 'removeFavoris()')
+
+    var etoile = document.getElementById('eto-favoris');
+    etoile.setAttribute('src', 'images/etoile-pleine.svg')
+  }
+  else {
+    var btn_favoris = document.getElementById('btn-favoris');
+    btn_favoris.setAttribute('onclick', 'addFavoris()')
+
+    var etoile = document.getElementById('eto-favoris');
+    etoile.setAttribute('src', 'images/etoile-vide.svg')
+  }
+}
+
+function useFav(span) {
+  document.getElementById("bar-recherche").value = span.innerText;
+}
+
+function createFav(fav) {
+  var favoris = document.getElementById('liste-favoris');
+
+  var newLi = document.createElement('li');
+
+  var newSpan = document.createElement('span');
+  newSpan.setAttribute('title', 'Cliquer pour relancer la recherche');
+  newSpan.setAttribute('onclick', 'useFav(this)')
+  newSpan.innerHTML = fav;
+
+  var newImg = document.createElement('img');
+  newImg.setAttribute('id', `${fav}`);
+  newImg.setAttribute('src', 'images/croix.svg');
+  newImg.setAttribute('alt', 'Icone pour supprimer le favori');
+  newImg.setAttribute('width', 15);
+  newImg.setAttribute('title', 'Cliquer pour supprimer le favori');
+
+  newImg.setAttribute('onclick', `removeFavoris(this)`)
+
+  favoris.append(newLi);
+  newLi.append(newSpan);
+  newLi.append(" ");
+  newLi.append(newImg);
+}
 
 // === autocompletion === //
 

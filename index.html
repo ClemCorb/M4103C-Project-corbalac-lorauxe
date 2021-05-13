@@ -24,7 +24,7 @@
 				<h2>Recherche par mot clé</h2>
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input id="bar-recherche" type="text" placeholder="Que cherchez-vous ?" list="search-list"/>
+					<input id="bar-recherche" type="text" placeholder="Que cherchez-vous ?" list="search-list" onchange="cheakFav()"/>
 					<datalist id="search-list">
 					</datalist>
 
@@ -37,7 +37,7 @@
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
 
-					<button id="btn-favoris" type="button" onclick="favoris()"
+					<button id="btn-favoris" type="button" onclick="addFavoris()"
 					title="Ajouter la recherche aux favoris">
 						<!-- Icone étoile vide => Recherche pas en favoris -->
 						<img id="eto-favoris" src="images/etoile-vide.svg" alt="Etoile vide" width=22 >
@@ -53,7 +53,7 @@
 				<h2>Changement de prénom</h2>
 				<div id="bloc-nom">
 					<!-- Champ de recherche -->
-					<input id="bar-nom" type="text" placeholder="Changer de nom .. ex. Jhon Smith" list="name-list"/>
+					<input id="bar-nom" type="text" placeholder="Changer de nom .. ex. John Smith" list="name-list"/>
 					<datalist id="name-list">
 					</datalist>
 
@@ -88,15 +88,15 @@
 				<ul id="liste-favoris">
 					<li>
 						<span title="Cliquer pour relancer la recherche">Pied-Bouche</span>
-						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
+						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori" onclick="removeFavoris(this)">
 					</li>
 					<li>
 						<span title="Cliquer pour relancer la recherche">Walker Texas Ranger</span>
-						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
+						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori" onclick="removeFavoris(this)">
 					</li>
 					<li>
 						<span title="Cliquer pour relancer la recherhe.">BOOOM</span>
-						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
+						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori" onclick="removeFavoris(this)">
 					</li>
 				</ul>
 			</section>
