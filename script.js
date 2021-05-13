@@ -40,6 +40,8 @@ function jokesPush(n) {
   }
   var responseField = document.getElementById("bloc-resultats");
   responseField.innerHTML = "";
+
+  search();
 }
 
 // ========== function ========== //
@@ -94,7 +96,7 @@ function search() {
     // crée un nouvel élément div
     var p = document.createElement("p");
     // et lui donne un peu de contenu
-    p.innerHTML = "( &empty; Aucun résultat trouvé )";
+    p.innerHTML = "( &empty; Aucun résultat trouvé pour " + value + " )";
     p.setAttribute('class', 'info-vide');
     // ajoute le nœud texte au nouveau div créé
     responseField.append(p);
@@ -178,6 +180,7 @@ function cheakFav() {
 
 function useFav(span) {
   document.getElementById("bar-recherche").value = span.innerText;
+  search();
 }
 
 function createFav(fav) {
