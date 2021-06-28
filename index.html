@@ -26,7 +26,7 @@
 						<h2>Recherche par mot clé</h2>
 						<div id="bloc-recherche">
 							<!-- Champ de recherche -->
-							<input id="bar-recherche" type="text" placeholder="Que cherchez-vous ?" list="search-list" onchange="cheakFav()"/>
+							<input id="bar-recherche" onkeypress="searchEnter(event)" type="text" placeholder="Que cherchez-vous ?" list="search-list" onchange="cheakFav()"/>
 							<datalist id="search-list">
 							</datalist>
 

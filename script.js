@@ -47,7 +47,9 @@ function jokesPush(n) {
 // ========== function ========== //
 
 function init() {
-  ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
+  //ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
+
+  jokes = ["michel", "4", "ever", "2", "night"];
 
   favoris = localStorage.getItem('favoris');
 
@@ -78,6 +80,16 @@ function changeName() {
 }
 
 // ==== rechercher ===== //
+
+// === enter === //
+function searchEnter(key) {
+  var x = key.which || key.keyCode;
+  if (x == 13) {
+    search();
+  }
+}
+
+// === recherche === //
 function search() {
   var value = document.getElementById("bar-recherche").value;
   var searchResponse = [];
