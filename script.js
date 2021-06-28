@@ -47,9 +47,7 @@ function jokesPush(n) {
 // ========== function ========== //
 
 function init() {
-  //ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
-
-  jokes = ["michel", "4", "ever", "2", "night"];
+  ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
 
   favoris = localStorage.getItem('favoris');
 
