@@ -47,7 +47,7 @@ function jokesPush(n) {
 // ========== function ========== //
 
 function init() {
-  ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
+  ajaxGetRequest(jokesPush, 'https://api.icndb.com/jokes/', true);
 
   favoris = localStorage.getItem('favoris');
 
@@ -67,13 +67,13 @@ function changeName() {
   jokes = [];
 
   if (fullname == "") {
-    ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/', true);
+    ajaxGetRequest(jokesPush, 'https://api.icndb.com/jokes/', true);
   }
   else if (splitName[0] != undefined && splitName[1] != undefined){
-    ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + "?firstName=" + splitName[0] + "&lastName=" + splitName[1], true);
+    ajaxGetRequest(jokesPush, 'https://api.icndb.com/jokes/' + "?firstName=" + splitName[0] + "&lastName=" + splitName[1], true);
   }
   else {
-    ajaxGetRequest(jokesPush, 'http://api.icndb.com/jokes/' + "?firstName=" + splitName[0] + "&lastName=", true);
+    ajaxGetRequest(jokesPush, 'https://api.icndb.com/jokes/' + "?firstName=" + splitName[0] + "&lastName=", true);
   }
 }
 
